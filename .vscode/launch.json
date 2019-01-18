@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MyRadio",
+            "request": "launch",
+            "mainClass": "MyRadio",
+            "projectName": "Radio"
+        }
+    ]
+}

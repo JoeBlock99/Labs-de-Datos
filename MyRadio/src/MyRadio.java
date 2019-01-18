@@ -47,14 +47,9 @@ class Rad implements iRadio{
 	
 
     public boolean encendidoRadio() {
-    	
-    	if (this.encendido) {
-    		System.out.println("Ya esta encendido!\n");
-    		return true;
-    	} else {
-    		this.encendido = true;
-    		return true;
-    	}
+			
+		this.encendido = !this.encendido;
+    	return true;
     	
     }
     
@@ -73,20 +68,24 @@ class Rad implements iRadio{
 	    	if (this.fm) {
 	    		//	true significa estamos en FM
 	    		if (this.frecuenciaActual == 107.9) {
-	    			this.frecuenciaActual = 87.9;
+					this.frecuenciaActual = 87.9;
+					this.toString();
 	    			return 87.9;
 	    		} else {
-	    			this.frecuenciaActual += 0.2;
+					this.frecuenciaActual += 0.2;
+					this.toString();
 	    			return this.frecuenciaActual;
 	    		}
 	    		
 	    	} else {
 	    		// false entonces estamos en AM
 	    		if (this.frecuenciaActual == 1610) {
-	    			this.frecuenciaActual = 530;
+					this.frecuenciaActual = 530;
+					this.toString();
 	    			return 530;
 	    		} else {
-	    			this.frecuenciaActual += 10;
+					this.frecuenciaActual += 10;
+					this.toString();
 	    			return this.frecuenciaActual;
 	    		}
 	    	}
@@ -102,20 +101,24 @@ class Rad implements iRadio{
 	    	if (this.fm) {
 	    		//	true significa estamos en FM
 	    		if (this.frecuenciaActual == 87.9) {
-	    			this.frecuenciaActual = 107.9;
+					this.frecuenciaActual = 107.9;
+					this.toString();
 	    			return 107.9;
 	    		} else {
-	    			this.frecuenciaActual -= 0.2;
+					this.frecuenciaActual -= 0.2;
+					this.toString();
 	    			return this.frecuenciaActual;
 	    		}
 	    		
 	    	} else {
 	    		// false entonces estamos en AM
 	    		if (this.frecuenciaActual == 530) {
-	    			this.frecuenciaActual = 1610;
+					this.frecuenciaActual = 1610;
+					this.toString();
 	    			return 1610;
 	    		} else {
-	    			this.frecuenciaActual -= 10;
+					this.frecuenciaActual -= 10;
+					this.toString();
 	    			return this.frecuenciaActual;
 	    		}
 	    	}
@@ -157,12 +160,14 @@ class Rad implements iRadio{
 	    	if (this.fm) {
 	    		// FM -> AM
 	    		this.fm = false;
-	    		this.frecuenciaActual = 530;
+				this.frecuenciaActual = 530;
+				this.toString();
 	    		return true;
 	    	} else {
 	    		// AM -> FM
 	    		this.fm = true;
-	    		this.frecuenciaActual = 87.9;
+				this.frecuenciaActual = 87.9;
+				this.toString();
 	    		return true;
 	    	}
     	}
@@ -170,18 +175,20 @@ class Rad implements iRadio{
     
     public void apagar() {
     	if (this.encendido) {
-    		this.encendido = false;
+			this.encendido = false;
+			this.toString();
     		
     	} else {
     		System.out.println("Ya esta apagado!\n");
     	}
     }
     	
-    public String ToString() {
+    public String toString() {
 //    	String res;
     	if (this.encendido) {
 	    	System.out.println("Modo actual:" + this.get_modo());
 			System.out.println("Estacion actual:" + this.get_frecuencia_actual());
+			System.out.println();
 			
 	    	return String.valueOf(this.get_frecuencia_actual());
     	} else {
@@ -208,38 +215,6 @@ public class MyRadio {
 		String resp;
 		int res;
 		
-//		laRadio.encendidoRadio();
-//		laRadio.ToString();
-//		
-//		laRadio.bajarFrecuencia();
-//		laRadio.ToString();
-//		
-//		laRadio.bajarFrecuencia();
-//		laRadio.ToString();
-//		
-//		laRadio.cambiarAmFm();
-//		laRadio.ToString();
-//		
-//		laRadio.bajarFrecuencia();
-//		laRadio.ToString();
-//		
-//		System.out.println("Que posicion desea guardar:");
-//		Integer res = scan.nextInt();
-//		//	asumiendo que nos dan entero.
-//		while (res > 12 | res < 1) {
-//			System.out.println("Rango invalido");
-//			System.out.println("Que posicion desea guardar:");
-//			res = scan.nextInt();
-//		}
-//		
-//		laRadio.setFavorito(res);
-//		System.out.println("Mi favorito en posicion " + String.valueOf(res) + " es: \n");
-//		System.out.println(laRadio.getFavorito(res));
-//		
-//		laRadio.apagar();
-//		laRadio.bajarFrecuencia();
-//		laRadio.ToString();
-		
 		while (val != 8) {
 			menu();
 			res = scan.nextInt();
@@ -247,19 +222,14 @@ public class MyRadio {
 			switch(res) {
 			
 			case 1:{
-				if (laRadio.encendido) {
-					laRadio.encendidoRadio();
-					laRadio.ToString();
-				} else {
-					laRadio.apagar();
-					laRadio.ToString();
-				}
+				laRadio.encendidoRadio();
 				break;
 			}
 			
 			case 2:{
-				laRadio.get_frecuencia_actual();
-				laRadio.ToString();
+//				laRadio.get_frecuencia_actual();
+				laRadio.toString();
+				break;
 			}
 			
 			case 3:{
@@ -290,7 +260,8 @@ public class MyRadio {
 			
 			case 5:{
 				laRadio.cambiarAmFm();
-				laRadio.ToString();
+				laRadio.toString();
+				// L U L.
 				break;
 			}
 			
@@ -306,6 +277,7 @@ public class MyRadio {
 			
 			case 8:{
 				System.out.println("FIN");
+				val = 8;
 				break;
 			}
 			
