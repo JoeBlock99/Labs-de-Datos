@@ -146,7 +146,7 @@ class Rad implements iRadio{
     	}
     }
     
-    private double get_frecuencia_actual() {
+    public double get_frecuencia_actual() {
     	return this.frecuenciaActual;
     }
     

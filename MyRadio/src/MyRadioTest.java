@@ -6,15 +6,16 @@ import org.junit.Test;
 
 public class MyRadioTest {
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void test_de_subir_frecuencia() {
 		Rad laRadio = new Rad();
-		double res = laRadio.bajarFrecuencia();
+		double res = laRadio.subirFrecuencia();
 //		assertEquals(3.3, res);
 //		assertCondition(ExcpetedValue, testedValue)
 //		assertCondition(ExcpetedArray, testedArray)
 		double frec = 88.1;
-		assertEquals(frec, laRadio.frecuenciaActual);
+		assertEquals(frec, laRadio.get_frecuencia_actual());
 	}
 	
 	@Test
@@ -22,7 +23,7 @@ public class MyRadioTest {
 	public void test_de_guardar_favorito() {
 		Rad laRadio = new Rad();
 		double[] arr_test = new double[12];
-		arr_test[5] = 88.9;
+		arr_test[5] = 87.9;
 		
 		laRadio.setFavorito(5);
 		// assertArrayEquals("Expected value", "Tested value");
@@ -32,9 +33,12 @@ public class MyRadioTest {
 	}
 	
 	@Test
+	@SuppressWarnings("deprecation")
 	public void test_si_esta_apagado() {
-		rad laRadio = new Rad();
-		
+		Rad laRadio = new Rad();
+		double res;
+		res = laRadio.bajarFrecuencia();
+		assertEquals(0.0, res);
 	}
 
 }
