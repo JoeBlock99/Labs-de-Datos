@@ -30,5 +30,11 @@ public class MyRadioTest {
 		assertEquals(arr_test[5], laRadio.favoritos[5]);
 		
 	}
+	
+	@Test
+	public void test_si_esta_apagado() {
+		rad laRadio = new Rad();
+		
+	}
 
 }

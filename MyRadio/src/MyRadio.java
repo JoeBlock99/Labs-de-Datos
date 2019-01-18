@@ -146,6 +146,10 @@ class Rad implements iRadio{
     	}
     }
     
+    private double get_frecuencia_actual() {
+    	return this.frecuenciaActual;
+    }
+    
 
     public boolean cambiarAmFm() {
     	if (!this.encendido) {
