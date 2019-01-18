@@ -124,25 +124,24 @@ class Rad implements iRadio{
     	
     }
     
-
     public void setFavorito(int posicion) {
     	if (!this.encendido) {
     		System.out.print("Encender radio.");
     		return;
     	} else {
     		// guardar favorito
+    		favoritos[posicion - 1] = this.get_frecuencia_actual();
     	}
     	
     }
     
-
     public double getFavorito(int posicion) {
     	if (!this.encendido) {
-    		System.out.print("Encender radio.");
+    		System.out.println("Encender radio.");
     		return 0.0;
     	} else {
     		// buscar favorito
-    		return 0.0;
+    		return favoritos[posicion - 1];
     	}
     }
     
@@ -150,7 +149,6 @@ class Rad implements iRadio{
     	return this.frecuenciaActual;
     }
     
-
     public boolean cambiarAmFm() {
     	if (!this.encendido) {
     		System.out.print("Encender radio.");
@@ -178,13 +176,67 @@ class Rad implements iRadio{
     		System.out.println("Ya esta apagado!\n");
     	}
     }
+    	
+    public String ToString() {
+//    	String res;
+    	if (this.encendido) {
+	    	System.out.println("Modo actual:" + this.get_modo());
+			System.out.println("Estacion actual:" + this.get_frecuencia_actual());
+			
+	    	return String.valueOf(this.get_frecuencia_actual());
+    	} else {
+    		System.out.println("Radio apagada");
+    		return "Radio apagada";
+    	}
+    }
     
-	
+    public String get_modo() {
+    	if (this.fm) {
+    		return "FM";
+    	} else {
+    		return "AM";
+    	}
+    }
 }
 
-//public class MyRadio {
-//	public static void main(String[] args) {
-//		
-//	}
-//	
-//}
+public class MyRadio {
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		Rad laRadio = new Rad();
+		
+		laRadio.encendidoRadio();
+		laRadio.ToString();
+		
+		laRadio.bajarFrecuencia();
+		laRadio.ToString();
+		
+		laRadio.bajarFrecuencia();
+		laRadio.ToString();
+		
+		laRadio.cambiarAmFm();
+		laRadio.ToString();
+		
+		laRadio.bajarFrecuencia();
+		laRadio.ToString();
+		
+		System.out.println("Que posicion desea guardar:");
+		Integer res = scan.nextInt();
+		//	asumiendo que nos dan entero.
+		while (res > 12 | res < 1) {
+			System.out.println("Rango invalido");
+			System.out.println("Que posicion desea guardar:");
+			res = scan.nextInt();
+		}
+		
+		laRadio.setFavorito(res);
+		System.out.println("Mi favorito en posicion " + String.valueOf(res) + " es: \n");
+		System.out.println(laRadio.getFavorito(res));
+		
+		laRadio.apagar();
+		laRadio.ToString();
+		
+		
+		
+	}
+	
+}

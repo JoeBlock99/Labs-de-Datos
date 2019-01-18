@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "Radio",
+                "projectName": "Radio",
+                "workingDirectory": "c:\\Users\\gerap\\Documents\\GitHub\\Radio",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "Radio",
+                "projectName": "Radio",
+                "workingDirectory": "c:\\Users\\gerap\\Documents\\GitHub\\Radio",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
