@@ -59,82 +59,110 @@ class Rad implements iRadio{
     }
     
     public double subirFrecuencia() {
-    	/*
-    	 *  1. Revisar en que tipo de radio (AM / FM)
-    	 *  2. IF AM subir frecuencia actual += 10
-    	 *  3. else subir actual + 0.2
-    	 *  
-    	 * 
-    	 */
-    	if (this.fm) {
-    		//	true significa estamos en FM
-    		if (this.frecuenciaActual == 107.9) {
-    			this.frecuenciaActual = 87.9;
-    			return 87.9;
-    		} else {
-    			this.frecuenciaActual += 0.2;
-    			return this.frecuenciaActual;
-    		}
-    		
+    	if (!this.encendido) {
+    		System.out.print("Encender radio.");
+    		return 0.0;
     	} else {
-    		// false entonces estamos en AM
-    		if (this.frecuenciaActual == 1610) {
-    			this.frecuenciaActual = 530;
-    			return 530;
-    		} else {
-    			this.frecuenciaActual += 10;
-    			return this.frecuenciaActual;
-    		}
+	    	/*
+	    	 *  1. Revisar en que tipo de radio (AM / FM)
+	    	 *  2. IF AM subir frecuencia actual += 10
+	    	 *  3. else subir actual + 0.2
+	    	 *  
+	    	 * 
+	    	 */
+	    	if (this.fm) {
+	    		//	true significa estamos en FM
+	    		if (this.frecuenciaActual == 107.9) {
+	    			this.frecuenciaActual = 87.9;
+	    			return 87.9;
+	    		} else {
+	    			this.frecuenciaActual += 0.2;
+	    			return this.frecuenciaActual;
+	    		}
+	    		
+	    	} else {
+	    		// false entonces estamos en AM
+	    		if (this.frecuenciaActual == 1610) {
+	    			this.frecuenciaActual = 530;
+	    			return 530;
+	    		} else {
+	    			this.frecuenciaActual += 10;
+	    			return this.frecuenciaActual;
+	    		}
+	    	}
     	}
     	
     }
     
     public double bajarFrecuencia() {
-    	if (this.fm) {
-    		//	true significa estamos en FM
-    		if (this.frecuenciaActual == 87.9) {
-    			this.frecuenciaActual = 107.9;
-    			return 107.9;
-    		} else {
-    			this.frecuenciaActual -= 0.2;
-    			return this.frecuenciaActual;
-    		}
-    		
+    	if (!this.encendido) {
+    		System.out.print("Encender radio.");
+    		return 0.0;
     	} else {
-    		// false entonces estamos en AM
-    		if (this.frecuenciaActual == 530) {
-    			this.frecuenciaActual = 1610;
-    			return 1610;
-    		} else {
-    			this.frecuenciaActual -= 10;
-    			return this.frecuenciaActual;
-    		}
+	    	if (this.fm) {
+	    		//	true significa estamos en FM
+	    		if (this.frecuenciaActual == 87.9) {
+	    			this.frecuenciaActual = 107.9;
+	    			return 107.9;
+	    		} else {
+	    			this.frecuenciaActual -= 0.2;
+	    			return this.frecuenciaActual;
+	    		}
+	    		
+	    	} else {
+	    		// false entonces estamos en AM
+	    		if (this.frecuenciaActual == 530) {
+	    			this.frecuenciaActual = 1610;
+	    			return 1610;
+	    		} else {
+	    			this.frecuenciaActual -= 10;
+	    			return this.frecuenciaActual;
+	    		}
+	    	}
     	}
+    	
     	
     }
     
 
     public void setFavorito(int posicion) {
+    	if (!this.encendido) {
+    		System.out.print("Encender radio.");
+    		return;
+    	} else {
+    		// guardar favorito
+    	}
     	
     }
     
 
     public double getFavorito(int posicion) {
-    	return 3.3;
+    	if (!this.encendido) {
+    		System.out.print("Encender radio.");
+    		return 0.0;
+    	} else {
+    		// buscar favorito
+    		return 0.0;
+    	}
     }
     
 
     public boolean cambiarAmFm() {
-    	if (this.fm) {
-    		// FM -> AM
-    		this.fm = false;
-    		this.frecuenciaActual = 530;
-    		return true;
+    	if (!this.encendido) {
+    		System.out.print("Encender radio.");
+    		return false;
     	} else {
-    		// AM -> FM
-    		this.fm = true;
-    		this.frecuenciaActual = 87.9;
-    		return true;
+	    	if (this.fm) {
+	    		// FM -> AM
+	    		this.fm = false;
+	    		this.frecuenciaActual = 530;
+	    		return true;
+	    	} else {
+	    		// AM -> FM
+	    		this.fm = true;
+	    		this.frecuenciaActual = 87.9;
+	    		return true;
+	    	}
     	}
     }
     

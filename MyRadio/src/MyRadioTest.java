@@ -17,6 +17,7 @@ public class MyRadioTest {
 		assertEquals(frec, laRadio.frecuenciaActual);
 	}
 	
+	@Test
 	@SuppressWarnings("deprecation")
 	public void test_de_guardar_favorito() {
 		Rad laRadio = new Rad();
