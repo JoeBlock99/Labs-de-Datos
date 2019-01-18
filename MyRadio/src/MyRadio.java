@@ -1,4 +1,4 @@
-
+import java.util.InputMismatchException;
 import org.junit.Test;
 
 import java.util.*;
@@ -60,7 +60,7 @@ class Rad implements iRadio{
     
     public double subirFrecuencia() {
     	if (!this.encendido) {
-    		System.out.print("Encender radio.");
+    		System.out.print("Encender radio.\n");
     		return 0.0;
     	} else {
 	    	/*
@@ -96,7 +96,7 @@ class Rad implements iRadio{
     
     public double bajarFrecuencia() {
     	if (!this.encendido) {
-    		System.out.print("Encender radio.");
+    		System.out.print("Encender radio.\n");
     		return 0.0;
     	} else {
 	    	if (this.fm) {
@@ -126,7 +126,7 @@ class Rad implements iRadio{
     
     public void setFavorito(int posicion) {
     	if (!this.encendido) {
-    		System.out.print("Encender radio.");
+    		System.out.print("Encender radio.\n");
     		return;
     	} else {
     		// guardar favorito
@@ -137,7 +137,7 @@ class Rad implements iRadio{
     
     public double getFavorito(int posicion) {
     	if (!this.encendido) {
-    		System.out.println("Encender radio.");
+    		System.out.println("Encender radio.\n");
     		return 0.0;
     	} else {
     		// buscar favorito
@@ -151,7 +151,7 @@ class Rad implements iRadio{
     
     public boolean cambiarAmFm() {
     	if (!this.encendido) {
-    		System.out.print("Encender radio.");
+    		System.out.print("Encender radio.\n");
     		return false;
     	} else {
 	    	if (this.fm) {
@@ -200,42 +200,139 @@ class Rad implements iRadio{
 }
 
 public class MyRadio {
-	public static void main(String[] args){
+	public static void main(String[] args) throws InputMismatchException{
+		try {
 		Scanner scan = new Scanner(System.in);
 		Rad laRadio = new Rad();
+		int val = 0;
+		String resp;
+		int res;
 		
-		laRadio.encendidoRadio();
-		laRadio.ToString();
+//		laRadio.encendidoRadio();
+//		laRadio.ToString();
+//		
+//		laRadio.bajarFrecuencia();
+//		laRadio.ToString();
+//		
+//		laRadio.bajarFrecuencia();
+//		laRadio.ToString();
+//		
+//		laRadio.cambiarAmFm();
+//		laRadio.ToString();
+//		
+//		laRadio.bajarFrecuencia();
+//		laRadio.ToString();
+//		
+//		System.out.println("Que posicion desea guardar:");
+//		Integer res = scan.nextInt();
+//		//	asumiendo que nos dan entero.
+//		while (res > 12 | res < 1) {
+//			System.out.println("Rango invalido");
+//			System.out.println("Que posicion desea guardar:");
+//			res = scan.nextInt();
+//		}
+//		
+//		laRadio.setFavorito(res);
+//		System.out.println("Mi favorito en posicion " + String.valueOf(res) + " es: \n");
+//		System.out.println(laRadio.getFavorito(res));
+//		
+//		laRadio.apagar();
+//		laRadio.bajarFrecuencia();
+//		laRadio.ToString();
 		
-		laRadio.bajarFrecuencia();
-		laRadio.ToString();
-		
-		laRadio.bajarFrecuencia();
-		laRadio.ToString();
-		
-		laRadio.cambiarAmFm();
-		laRadio.ToString();
-		
-		laRadio.bajarFrecuencia();
-		laRadio.ToString();
-		
-		System.out.println("Que posicion desea guardar:");
-		Integer res = scan.nextInt();
-		//	asumiendo que nos dan entero.
-		while (res > 12 | res < 1) {
-			System.out.println("Rango invalido");
-			System.out.println("Que posicion desea guardar:");
+		while (val != 8) {
+			menu();
 			res = scan.nextInt();
+			
+			switch(res) {
+			
+			case 1:{
+				if (laRadio.encendido) {
+					laRadio.encendidoRadio();
+					laRadio.ToString();
+				} else {
+					laRadio.apagar();
+					laRadio.ToString();
+				}
+				break;
+			}
+			
+			case 2:{
+				laRadio.get_frecuencia_actual();
+				laRadio.ToString();
+			}
+			
+			case 3:{
+				System.out.println("Que posicion desea guardar:");
+				res = scan.nextInt();
+				//	asumiendo que nos dan entero.
+				while (res > 12 | res < 1) {
+					System.out.println("Rango invalido");
+					System.out.println("Que posicion desea guardar:");
+					res = scan.nextInt();
+				}
+				laRadio.setFavorito(res);
+				break;
+			}
+			
+			case 4:{
+				System.out.println("Que posicion desea ver:");
+				res = scan.nextInt();
+				//	asumiendo que nos dan entero.
+				while (res > 12 | res < 1) {
+					System.out.println("Rango invalido");
+					System.out.println("Que posicion desea ver:");
+					res = scan.nextInt();
+				}
+				laRadio.getFavorito(res);
+				break;
+			}
+			
+			case 5:{
+				laRadio.cambiarAmFm();
+				laRadio.ToString();
+				break;
+			}
+			
+			case 6:{
+				laRadio.subirFrecuencia();
+				break;
+			}
+			
+			case 7:{
+				laRadio.bajarFrecuencia();
+				break;
+			}
+			
+			case 8:{
+				System.out.println("FIN");
+				break;
+			}
+			
+			default:{
+				System.out.println("Default");
+				break;
+				}
+			}
+			
+		} 
+		} catch (InputMismatchException e) {
+			System.out.println("Argumento invalido, reiniciar");
+//			e.printStackTrace();
 		}
 		
-		laRadio.setFavorito(res);
-		System.out.println("Mi favorito en posicion " + String.valueOf(res) + " es: \n");
-		System.out.println(laRadio.getFavorito(res));
-		
-		laRadio.apagar();
-		laRadio.ToString();
-		
-		
+	}
+	
+	public static void menu() {
+		System.out.println("1. Encender / apagar.");
+		System.out.println("2. Estacion actual");
+		System.out.println("3. Guardar favorito");
+		System.out.println("4. Ver favorito");
+		System.out.println("5. Cambiar AM/FM");
+		System.out.println("6. Subir dial");
+		System.out.println("7. Bajar dial");
+		System.out.println("8. Salir");
+		System.out.println("Ingresar opcion: ");
 		
 	}
 	
