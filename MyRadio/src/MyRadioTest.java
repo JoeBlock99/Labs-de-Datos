@@ -6,39 +6,40 @@ import org.junit.Test;
 
 public class MyRadioTest {
 
-	@SuppressWarnings("deprecation")
 	@Test
-	public void test_de_subir_frecuencia() {
+	public void test_subir_frecuencia_fm() {
+		// revisar si la frecuencia cambia en el intervalo dado.
 		Rad laRadio = new Rad();
+		laRadio.encendidoRadio();
 		double res = laRadio.subirFrecuencia();
-//		assertEquals(3.3, res);
-//		assertCondition(ExcpetedValue, testedValue)
+
 //		assertCondition(ExcpetedArray, testedArray)
 		double frec = 88.1;
-		assertEquals(frec, laRadio.get_frecuencia_actual());
+		assertEquals(frec, res, 0.1);
 	}
 	
 	@Test
-	@SuppressWarnings("deprecation")
 	public void test_de_guardar_favorito() {
+		//	verificar si los arreglos osn iguales al guardar los valores esperados
 		Rad laRadio = new Rad();
+		laRadio.encendidoRadio();
 		double[] arr_test = new double[12];
-		arr_test[5] = 87.9;
-		
+		arr_test[4] = 87.9;
 		laRadio.setFavorito(5);
 		// assertArrayEquals("Expected value", "Tested value");
 		//	verificando que el valor se guardo en la misma posicion
-		assertEquals(arr_test[5], laRadio.favoritos[5]);
-		
+		assertArrayEquals(arr_test, laRadio.get_favs(), 0);
+
 	}
 	
 	@Test
-	@SuppressWarnings("deprecation")
 	public void test_si_esta_apagado() {
+		//	ver si devuelve mensaje de encender la radio
 		Rad laRadio = new Rad();
 		double res;
 		res = laRadio.bajarFrecuencia();
-		assertEquals(0.0, res);
+		System.out.print(String.valueOf(res));
+		assertEquals(0.0, res, 0);
 	}
 
 }

@@ -1,5 +1,5 @@
 import java.util.InputMismatchException;
-import org.junit.Test;
+//import org.junit.Test;
 
 import java.util.*;
 
@@ -8,7 +8,7 @@ import java.util.*;
  */
 /**
  * Lab 01
- * Interfaces
+ * Interfaces y pruebas unitarios
  * 
  * Jose Block - 18020
  * Gerardo Pineda - 18848
@@ -53,7 +53,13 @@ class Rad implements iRadio{
     	
     }
     
+    public double[] get_favs() {
+    	return this.favoritos;
+    }
+    
     public double subirFrecuencia() {
+    	//	luego de verificar si esta encendido y en que tipo de estacion
+    	//	sube la frecuencia apropiadamente.
     	if (!this.encendido) {
     		System.out.print("Encender radio.\n");
     		return 0.0;
@@ -94,6 +100,8 @@ class Rad implements iRadio{
     }
     
     public double bajarFrecuencia() {
+    	//  Luego de verificar si esta encendido y en que tipo de estacion
+    	//	disminuye la frecuencia apropiadamente.
     	if (!this.encendido) {
     		System.out.print("Encender radio.\n");
     		return 0.0;
